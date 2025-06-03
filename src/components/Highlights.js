@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Special = () => {
+const Highlights = () => {
   return (
     <div>Special</div>
   )
 }
 
-export default Special
+export default Highlights

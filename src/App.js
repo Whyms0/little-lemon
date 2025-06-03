@@ -1,16 +1,18 @@
 import './App.css';
-import About from './components/About';
+import About from './components/Hero';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Special from './components/Special';
+import Highlights from './components/Highlights';
 import Testemonials from './components/Testemonials';
+import Hero from './components/Hero';
 
 
 function App() {
   return (
    <>
    <Header />
-   <Special />
+   <Hero />
+   <Highlights />
    <Testemonials />
    <About />
    <Footer />
