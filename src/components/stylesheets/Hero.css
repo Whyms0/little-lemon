@@ -58,14 +58,22 @@
 }
 
 .imgContainer img {
+    display: block;
     width: 100%;
     height: auto;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transform: translateY(5%);
 }
 
 @media (max-width: 480px) {
     .container {
         flex-direction: column;
         flex-wrap: wrap;
+        gap: 10px;
+    }
+    .imgContainer img {
+        height: 350px;
     }
 }
 
