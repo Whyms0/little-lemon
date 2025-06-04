@@ -1,0 +1,51 @@
+.testemonials-article {
+    background-color: var(--primaryColor);
+    color: var(--gray);
+    padding: 2rem 3rem;
+}
+
+.test-header {
+    text-align: center;
+}
+
+.ratings-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+    padding: 3rem 2rem;
+}
+
+.ratingBox {
+    flex: 0 1 250px;
+    height: 175px ;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: var(--darkgray);
+    background-color: var(--gray);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.ratingBox .user {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.ratingBox .rating {
+    color: #FFD700;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    filter: drop-shadow(0 0 1px #333);
+}
+
+.ratingBox  p {
+    font-size: 14px     ;
+}
