@@ -1,19 +1,27 @@
     import React, {useState} from 'react'
     import './stylesheets/BookingForm.css'
     import '../App.css'
-    const BookingForm = ({ date, setDate, time, setTime, guests, setGuests, occasion, setOccasion, availableTimes }) => {
+    const BookingForm = ({ date, setDate, time, setTime, guests, setGuests, occasion, setOccasion, availableTimes, dispatch }) => {
         return (
         <>
             <form className='booking-form'>
         <label htmlFor="res-date">Choose date</label>
-        <input type="date"
-        id="res-date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)} />
+        <input
+            type="date"
+            id="res-date"
+            value={date}
+            required
+            onChange={(e) => {
+            const newDate = e.target.value;
+            setDate(newDate)
+            dispatch({ type: "update", payload: e.target.value });
+  }}
+/>
 
         <label htmlFor="res-time">Choose time</label>
         <select id="res-time"
         value={time}
+        required
         onChange={(e) => setTime(e.target.value)}>
             {availableTimes.map(time => 
                 <option key={time}>{time}</option>

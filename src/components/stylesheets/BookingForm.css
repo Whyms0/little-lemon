@@ -1,5 +1,3 @@
-/* BookingForm.css */
-
 .booking-form {
   max-width: 500px;
   margin: 2rem auto;
@@ -53,7 +51,7 @@
 }
 
 @media (max-width: 600px) {
-  .booking-form {   
+  .booking-form {
     padding: 3rem;
     overflow-x: hidden;
   }
