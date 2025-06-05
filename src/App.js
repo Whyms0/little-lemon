@@ -12,7 +12,7 @@ function App() {
     const [time, setTime] = useState('17:00')
     const [guests, setGuests] = useState('0')
     const [occasion, setOccasion] = useState('')
-    const availableTimes = ["17:00", "17:30", "18:00", "18:30", '19:00', "20:00", "20:30"]
+    const [availableTimes , setAvailableTimes] = useState(["17:00", "17:30", "18:00", "18:30", '19:00', "20:00", "20:30"])
   return (
    <>
    <Header />
@@ -31,6 +31,7 @@ function App() {
       occasion={occasion}
       setOccasion={setOccasion}
       availableTimes={availableTimes}
+      setAvailableTimes= {setAvailableTimes}
     />
   }
 />
