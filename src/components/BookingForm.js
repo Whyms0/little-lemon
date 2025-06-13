@@ -5,6 +5,8 @@
         return (
         <>
             <form className='booking-form'>
+
+        <h3 className='headin'>Book Your Experience !</h3>
         <label htmlFor="res-date">Choose date</label>
         <input
             type="date"
