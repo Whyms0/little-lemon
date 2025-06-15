@@ -10,18 +10,17 @@ import BookingPage from './components/BookingPage';
 import BookingConfirmation from './components/BookingConfirmation';
 import { fetchAPI, submitAPI } from './api';
 
-function App() {
-  const navigate = useNavigate()
-
-  const initializeTimes = () => {
+export const initializeTimes = () => {
   const today = new Date()
   const availableTimes = fetchAPI(today)
   return availableTimes
 };
 
-  const updateTimes = (state, action) => {
+  export const updateTimes = (state, action) => {
   return fetchAPI(action);
   }
+function App() {
+  const navigate = useNavigate()
   const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
   const [date, setDate] = useState("");
   const [time, setTime] = useState("17:00");

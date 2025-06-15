@@ -1,56 +1,59 @@
+import React, { useState } from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import BookingForm from "./components/BookingForm";
-import { fireEvent, render, screen } from "@testing-library/react";
+function BookingFormWithState({ onSubmit }) {
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [guests, setGuests] = useState(1);
+  const [occasion, setOccasion] = useState("");
+
+  return (
+    <BookingForm
+      date={date}
+      setDate={setDate}
+      time={time}
+      setTime={setTime}
+      guests={guests}
+      setGuests={setGuests}
+      occasion={occasion}
+      setOccasion={setOccasion}
+      availableTimes={["17:00", "18:00"]}
+      dispatch={jest.fn()}
+      submitForm={onSubmit}
+    />
+  );
+}
 
 test("renders static heading in BookingForm", () => {
-  const mockProps = {
-    date: "",
-    setDate: jest.fn(),
-    time: "",
-    setTime: jest.fn(),
-    guests: 1,
-    setGuests: jest.fn(),
-    occasion: "",
-    setOccasion: jest.fn(),
-    availableTimes: ["17:00", "18:00"],
-    dispatch: jest.fn(),
-  };
-
-  render(<BookingForm {...mockProps} />);
+  render(<BookingFormWithState onSubmit={jest.fn()} />);
   const heading = screen.getByText(/Book Your Experience/i);
   expect(heading).toBeInTheDocument();
 });
 
 test("submits the booking form", () => {
-  const mockProps = {
-    date: "",
-    setDate: jest.fn(),
-    time: "",
-    setTime: jest.fn(),
-    guests: 1,
-    setGuests: jest.fn(),
-    occasion: "",
-    setOccasion: jest.fn(),
-    availableTimes: ["17:00", "18:00"],
-    dispatch: jest.fn(),
-  };
+  const mockSubmit = jest.fn();
 
-  render(<BookingForm {...mockProps} />);
+  render(<BookingFormWithState onSubmit={mockSubmit} />);
 
   fireEvent.change(screen.getByLabelText(/choose date/i), {
     target: { value: "2025-04-11" },
   });
-
   fireEvent.change(screen.getByLabelText(/choose time/i), {
     target: { value: "17:00" },
   });
-
   fireEvent.change(screen.getByLabelText(/Number of guests/i), {
-    target: { value: '3'}
- })
- fireEvent.change(screen.getByLabelText(/Occasion/i), {
-  target: { value: "Birthday"}
- })
+    target: { value: "3" },
+  });
+  fireEvent.change(screen.getByLabelText(/Occasion/i), {
+    target: { value: "Birthday" },
+  });
+
   fireEvent.click(screen.getByRole("button", { name: /make your reservation/i }));
 
-  expect(mockProps.setDate).toHaveBeenCalledWith("2025-04-11");
+  expect(mockSubmit).toHaveBeenCalledWith({
+    date: "2025-04-11",
+    time: "17:00",
+    guests: "3",
+    occasion: "Birthday",
+  });
 });
