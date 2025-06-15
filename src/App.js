@@ -1,26 +1,42 @@
+/* global fetchAPI */
 import React, { useState, useReducer } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Homepage from './components/Homepage';
 import BookingPage from './components/BookingPage';
+import BookingConfirmation from './components/BookingConfirmation';
+import { fetchAPI, submitAPI } from './api';
 
 function App() {
+  const navigate = useNavigate()
+
   const initializeTimes = () => {
-  return ["17:00", "17:30", "18:00", "18:30", "19:00", "20:00", "20:30"];
+  const today = new Date()
+  const availableTimes = fetchAPI(today)
+  return availableTimes
 };
 
   const updateTimes = (state, action) => {
-  // For now, just return the current times (no update logic yet)
-  return initializeTimes();
+  return fetchAPI(action);
   }
   const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
   const [date, setDate] = useState("");
   const [time, setTime] = useState("17:00");
   const [guests, setGuests] = useState("0");
   const [occasion, setOccasion] = useState("");
+
+  const submitForm = (formData) => {
+    const success = submitAPI(formData)
+    if (success) {
+      navigate('/confirmation')
+    }
+    else {
+      alert('your booking failed, please try again')
+    }
+  }
 
   return (
     <>
@@ -41,9 +57,11 @@ function App() {
               setOccasion={setOccasion}
               availableTimes={availableTimes}
               dispatch={dispatch}
+              submitForm={submitForm}
             />
           }
         />
+        <Route path='/confirmation' element={<BookingConfirmation />} />
       </Routes>
       <Footer />
     </>
@@ -51,5 +69,3 @@ function App() {
 }
 
 export default App;
-// Add these exports at the bottom of App.js
-export { initializeTimes, updateTimes };

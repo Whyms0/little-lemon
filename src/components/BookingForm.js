@@ -1,10 +1,11 @@
     import React, {useState} from 'react'
     import './stylesheets/BookingForm.css'
     import '../App.css'
-    const BookingForm = ({ date, setDate, time, setTime, guests, setGuests, occasion, setOccasion, availableTimes, dispatch }) => {
+    const BookingForm = ({ date, setDate, time, setTime, guests, setGuests, occasion, setOccasion, availableTimes, dispatch, submitForm }) => {
         const handleSubmit = (e) => {
             e.preventDefault();
-            console.log('Form submitted')
+            const formData = { date, time, guests, occasion };
+            submitForm(formData);
         }
         return (
         <>
@@ -20,7 +21,7 @@
             onChange={(e) => {
             const newDate = e.target.value;
             setDate(newDate)
-            dispatch({ type: "update", payload: e.target.value });
+            dispatch(new Date(e.target.value))
   }}
 />
 
