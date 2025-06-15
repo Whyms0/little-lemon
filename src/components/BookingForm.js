@@ -2,9 +2,13 @@
     import './stylesheets/BookingForm.css'
     import '../App.css'
     const BookingForm = ({ date, setDate, time, setTime, guests, setGuests, occasion, setOccasion, availableTimes, dispatch }) => {
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            console.log('Form submitted')
+        }
         return (
         <>
-            <form className='booking-form'>
+            <form className='booking-form' onSubmit={handleSubmit}>
 
         <h3 className='headin'>Book Your Experience !</h3>
         <label htmlFor="res-date">Choose date</label>

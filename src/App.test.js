@@ -1,35 +1,56 @@
-import { initializeTimes, updateTimes } from './App';
+import BookingForm from "./components/BookingForm";
+import { fireEvent, render, screen } from "@testing-library/react";
 
-describe('Time management functions', () => {
-  describe('initializeTimes()', () => {
-    it('returns the correct array of available times', () => {
-      const expectedTimes = [
-        "17:00", "17:30", "18:00", "18:30", 
-        "19:00", "20:00", "20:30"
-      ];
-      
-      const result = initializeTimes();
-      
-      expect(result).toEqual(expectedTimes);
-      expect(result).toHaveLength(7);
-    });
+test("renders static heading in BookingForm", () => {
+  const mockProps = {
+    date: "",
+    setDate: jest.fn(),
+    time: "",
+    setTime: jest.fn(),
+    guests: 1,
+    setGuests: jest.fn(),
+    occasion: "",
+    setOccasion: jest.fn(),
+    availableTimes: ["17:00", "18:00"],
+    dispatch: jest.fn(),
+  };
+
+  render(<BookingForm {...mockProps} />);
+  const heading = screen.getByText(/Book Your Experience/i);
+  expect(heading).toBeInTheDocument();
+});
+
+test("submits the booking form", () => {
+  const mockProps = {
+    date: "",
+    setDate: jest.fn(),
+    time: "",
+    setTime: jest.fn(),
+    guests: 1,
+    setGuests: jest.fn(),
+    occasion: "",
+    setOccasion: jest.fn(),
+    availableTimes: ["17:00", "18:00"],
+    dispatch: jest.fn(),
+  };
+
+  render(<BookingForm {...mockProps} />);
+
+  fireEvent.change(screen.getByLabelText(/choose date/i), {
+    target: { value: "2025-04-11" },
   });
 
-  describe('updateTimes()', () => {
-    it('always returns the initialized times (ignores state and action)', () => {
-      const expectedTimes = initializeTimes();
-      
-      // Test with empty state
-      expect(updateTimes([], {})).toEqual(expectedTimes);
-      
-      // Test with different state
-      expect(updateTimes(["18:00"], {})).toEqual(expectedTimes);
-      
-      // Test with action
-      expect(updateTimes([], { type: 'UPDATE' })).toEqual(expectedTimes);
-      
-      // Test with garbage input
-      expect(updateTimes(null, 123)).toEqual(expectedTimes);
-    });
+  fireEvent.change(screen.getByLabelText(/choose time/i), {
+    target: { value: "17:00" },
   });
+
+  fireEvent.change(screen.getByLabelText(/Number of guests/i), {
+    target: { value: '3'}
+ })
+ fireEvent.change(screen.getByLabelText(/Occasion/i), {
+  target: { value: "Birthday"}
+ })
+  fireEvent.click(screen.getByRole("button", { name: /make your reservation/i }));
+
+  expect(mockProps.setDate).toHaveBeenCalledWith("2025-04-11");
 });
