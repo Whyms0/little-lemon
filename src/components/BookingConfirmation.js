@@ -6,4 +6,4 @@ const BookingConfirmation = () => {
   )
 }
 
-export default BookingConfirmation
+export default BookingConfirmation 

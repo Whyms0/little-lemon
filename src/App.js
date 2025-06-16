@@ -1,4 +1,3 @@
-/* global fetchAPI */
 import React, { useState, useReducer } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
@@ -23,9 +22,9 @@ function App() {
   const navigate = useNavigate()
   const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
   const [date, setDate] = useState("");
-  const [time, setTime] = useState("17:00");
-  const [guests, setGuests] = useState("0");
-  const [occasion, setOccasion] = useState("");
+  const [time, setTime] = useState();
+  const [guests, setGuests] = useState();
+  const [occasion, setOccasion] = useState();
 
   const submitForm = (formData) => {
     const success = submitAPI(formData)
