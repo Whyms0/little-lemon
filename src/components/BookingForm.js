@@ -123,6 +123,7 @@ const BookingForm = ({
 
       <input
         id="submitbtn"
+        aria-label="On Click"
         type="submit"
         value="Make Your Reservation"
         disabled={!isFormValid()}

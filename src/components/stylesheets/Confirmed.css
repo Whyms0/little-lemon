@@ -1,0 +1,65 @@
+article.bookingConfirmed {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background-color: #E6FFFA;
+  padding: 2rem;
+}
+
+.bookingConfirmed .container {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 1rem;
+  margin: 2rem;
+  padding: 2rem;
+  max-width: 600px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  backdrop-filter: saturate(180%) blur(12px);
+}
+
+.bookingConfirmed .checkk {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  font-size: 4rem;
+  color: #16a34a;
+  margin-bottom: 1rem;
+}
+
+.bookingConfirmed h2 {
+  font-size: 3rem;
+  color: #0f766e;
+  margin-bottom: 0.5rem;
+}
+
+.bookingConfirmed p {
+  font-size: 1.2rem;
+  color: #334155;
+  margin-bottom: 1.5rem;
+}
+
+.bookingConfirmed .cta {
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+  article.bookingConfirmed {
+    margin: 1rem auto;
+  }
+  .bookingConfirmed .container {
+    margin: 1rem;
+    padding: 1.5rem;
+    max-width: 90vw;
+  }
+  .bookingConfirmed h2 {
+    font-size: 2.2rem;
+  }
+  .bookingConfirmed p {
+    font-size: 1rem;
+  }
+  .bookingConfirmed #homebtn {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+  }
+}

@@ -1,4 +1,4 @@
-/* Footer Styling */
+
 .footer {
   background-color: #EDEFEE;
   color: #000;
@@ -16,7 +16,6 @@
   align-items: center;
 }
 
-/* Center each footer section */
 .footer-grid > div {
   display: flex;
   flex-direction: column;
@@ -60,7 +59,6 @@
   height: auto;
 }
 
-/* Responsive Footer */
 @media (max-width: 768px) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);

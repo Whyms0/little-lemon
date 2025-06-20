@@ -13,6 +13,7 @@ const Hero = () => {
           <h3>Chicago</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           <button 
+          aria-label="On Click"
           role='button' 
           className='cta'
           onClick={() =>navigate('/reservations')}
